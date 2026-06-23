@@ -26,6 +26,7 @@ function onElementFound(container) {
         lastPayoutCursor: '',
         lastTradeCursor: '',
         lastEngagementCursor: '',
+        lastGroupEngagementCursor: '',
         userId: 0,
         errorMessage: '',
         isRateLimited: false,
@@ -67,6 +68,8 @@ function onElementFound(container) {
                     type = ts('totalEarned.groupPayout');
                 } else if (transaction.category === 'EngagementPayout') {
                     type = transaction.transactionType || 'Engagement Payout';
+                } else if (transaction.category === 'GroupEngagementPayout') {
+                    type = transaction.transactionType || 'Group Engagement Payout';
                 } else if (transaction.details && transaction.details.type) {
                     type = transaction.details.type;
                 } else if (transaction.transactionType) {
@@ -380,6 +383,11 @@ function onElementFound(container) {
                     cursorKey: 'lastEngagementCursor',
                     category: 'EngagementPayout',
                 },
+                {
+                    type: 'GroupEngagementPayout',
+                    cursorKey: 'lastGroupEngagementCursor',
+                    category: 'GroupEngagementPayout',
+                }
             ];
 
             for (const task of transactionTasks) {
@@ -484,6 +492,7 @@ function onElementFound(container) {
             lastPayoutCursor: '',
             lastTradeCursor: '',
             lastEngagementCursor: '',
+            lastGroupEngagementCursor: '',
             errorMessage: '',
             retryCount: 0,
         };
