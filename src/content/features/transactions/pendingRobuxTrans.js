@@ -34,7 +34,9 @@ async function fetchTransactions(userId, statusCallback) {
     
     const transactionConfigs = [
         { type: 'Sale', itemPricingType: 'PaidAndLimited' },
-        { type: 'GroupPayout' }
+        { type: 'GroupPayout' },
+        { type: 'GroupEngagementPayout' },
+        { type: 'AffiliateSale' }
     ];
 
     for (const config of transactionConfigs) {
