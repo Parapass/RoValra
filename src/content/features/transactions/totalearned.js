@@ -23,6 +23,7 @@ function onElementFound(container) {
         transactionsProcessed: 0,
         sourceBreakdown: {},
         lastSaleCursor: '',
+        lastAffiliateSaleCursor: '',
         lastPayoutCursor: '',
         lastTradeCursor: '',
         lastEngagementCursor: '',
@@ -70,6 +71,8 @@ function onElementFound(container) {
                     type = transaction.transactionType || 'Engagement Payout';
                 } else if (transaction.category === 'GroupEngagementPayout') {
                     type = transaction.transactionType || 'Group Engagement Payout';
+                } else if (transaction.category === 'AffiliateSale') {
+                    type = transaction.transactionType || 'Commissions';
                 } else if (transaction.details && transaction.details.type) {
                     type = transaction.details.type;
                 } else if (transaction.transactionType) {
@@ -387,6 +390,11 @@ function onElementFound(container) {
                     type: 'GroupEngagementPayout',
                     cursorKey: 'lastGroupEngagementCursor',
                     category: 'GroupEngagementPayout',
+                },
+                {
+                    type: 'AffiliateSale',
+                    cursorKey: 'lastAffiliateSaleCursor',
+                    category: 'AffiliateSale',
                 }
             ];
 
@@ -493,6 +501,7 @@ function onElementFound(container) {
             lastTradeCursor: '',
             lastEngagementCursor: '',
             lastGroupEngagementCursor: '',
+            lastAffiliateSaleCursor: '',
             errorMessage: '',
             retryCount: 0,
         };
